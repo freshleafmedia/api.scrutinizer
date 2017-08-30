@@ -1,11 +1,11 @@
-<?php namespace ScrutinizerApi\Tests;
+<?php namespace FreshleafMedia\ScrutinizerApi\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
 class RobotsTxtExistsTest
 {
-    public function run($URL): boolean
+    public function run($URL): bool
     {
         $client = new Client();
 
