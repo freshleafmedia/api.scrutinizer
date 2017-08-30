@@ -38,7 +38,6 @@ class Api implements MessageComponentInterface
 
         if ($data->request === 'robotsExists') {
             $client = new Client();
-            $from->send($data->body->URL);
 
             try {
                 $res = $client->request('GET', $data->body->URL . '/robots.txt');
