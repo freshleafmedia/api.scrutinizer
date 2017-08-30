@@ -1,6 +1,8 @@
 <?php namespace ScrutinizerApi;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use Ratchet\App;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use ScrutinizerApi\Tests\RobotsTxtExistsTest;
@@ -27,7 +29,7 @@ class Api implements MessageComponentInterface
 
             try {
                 $res = $client->request('GET', $data->body->URL);
-            } catch (\GuzzleHttp\Exception\ClientException $e) {
+            } catch (ClientException $e) {
                 $res = $e->getResponse();
             }
 
@@ -52,7 +54,7 @@ class Api implements MessageComponentInterface
 
             try {
                 $res = $client->request('GET', $data->body->URL . '/sitemap.xml');
-            } catch (\GuzzleHttp\Exception\ClientException $e) {
+            } catch (ClientException $e) {
                 $res = $e->getResponse();
             }
 
@@ -68,7 +70,7 @@ class Api implements MessageComponentInterface
 
             try {
                 $res = $client->request('GET', $data->body->URL . '/sitemap.xml.gz');
-            } catch (\GuzzleHttp\Exception\ClientException $e) {
+            } catch (ClientException $e) {
                 $res = $e->getResponse();
             }
 
@@ -92,6 +94,6 @@ class Api implements MessageComponentInterface
 }
 
 // Run the server application through the WebSocket protocol on port 8080
-$app = new Ratchet\App('localhost', 8080);
+$app = new App('localhost', 8080);
 $app->route('/api', new Api, array('*'));
 $app->run();
