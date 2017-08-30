@@ -6,10 +6,6 @@ use Ratchet\ConnectionInterface;
 // Make sure composer dependencies have been installed
 require __DIR__ . '/vendor/autoload.php';
 
-/**
- * chat.php
- * Send any incoming messages to all connected clients (except sender)
- */
 class Api implements MessageComponentInterface
 {
     public function __construct()
@@ -25,7 +21,7 @@ class Api implements MessageComponentInterface
         $data = json_decode($msg);
 
         if ($data->request === 'GET /meta') {
-            $from->send($data->data);
+            $from->send($data->body);
         }
     }
 
