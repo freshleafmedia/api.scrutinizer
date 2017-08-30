@@ -21,7 +21,7 @@ class Api implements MessageComponentInterface
     {
         $data = json_decode($msg);
 
-        if ($data->request === 'meta') {
+        if ($data->request === '/meta') {
             $client = new Client();
 
             try {
@@ -36,7 +36,7 @@ class Api implements MessageComponentInterface
             $from->send(json_encode($metaData));
         }
 
-        if ($data->request === 'robotsExists') {
+        if ($data->request === '/tests/robotsTextExists') {
             $client = new Client();
 
             try {
@@ -46,9 +46,9 @@ class Api implements MessageComponentInterface
             }
 
             if ($res->getStatusCode() === 404) {
-                $from->send('{"robotsExists": "false" }');
+                $from->send('{"pass": "false" }');
             } else {
-                $from->send('{"robotsExists": "true" }');
+                $from->send('{"pass": "true" }');
             }
 
         }
