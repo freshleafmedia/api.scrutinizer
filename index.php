@@ -1,8 +1,9 @@
-<?php
+<?php namespace ScrutinizerApi;
 
 use GuzzleHttp\Client;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use ScrutinizerApi\Tests\RobotsTxtExistsTest;
 
 // Make sure composer dependencies have been installed
 require __DIR__ . '/vendor/autoload.php';
@@ -37,18 +38,12 @@ class Api implements MessageComponentInterface
         }
 
         if ($data->request === '/tests/robotsTextExists') {
-            $client = new Client();
+            $test = new RobotsTxtExistsTest();
 
-            try {
-                $res = $client->request('GET', $data->body->URL . '/robots.txt');
-            } catch (\GuzzleHttp\Exception\ClientException $e) {
-                $res = $e->getResponse();
-            }
-
-            if ($res->getStatusCode() === 404) {
-                $from->send('{"pass": "false" }');
-            } else {
+            if ($test->run($data->body->URL)) {
                 $from->send('{"pass": "true" }');
+            } else {
+                $from->send('{"pass": "false" }');
             }
         }
 
