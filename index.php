@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Client;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
@@ -20,8 +21,22 @@ class Api implements MessageComponentInterface
     {
         $data = json_decode($msg);
 
-        if ($data->request === 'GET /meta') {
-            $from->send($data->body);
+        $from->send($data->request);
+
+        if ($data->request === 'meta') {
+            $client = new Client();
+            $from->send($data->body->URL);
+
+            try {
+                $res = $client->request('GET', $data->body->URL);
+            } catch (\GuzzleHttp\Exception\ClientException $e) {
+                $res = $e->getResponse();
+            }
+
+            $metaData = new \stdClass();
+            $metaData->response = $res->getStatusCode();
+
+            $from->send(json_encode($metaData));
         }
     }
 
@@ -31,6 +46,7 @@ class Api implements MessageComponentInterface
 
     public function onError(ConnectionInterface $conn, \Exception $e)
     {
+        echo $e;
         $conn->close();
     }
 }
