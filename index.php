@@ -38,6 +38,24 @@ class Api implements MessageComponentInterface
 
             $from->send(json_encode($metaData));
         }
+
+        if ($data->request === 'robotsExists') {
+            $client = new Client();
+            $from->send($data->body->URL);
+
+            try {
+                $res = $client->request('GET', $data->body->URL . '/robots.txt');
+            } catch (\GuzzleHttp\Exception\ClientException $e) {
+                $res = $e->getResponse();
+            }
+
+            if ($res->getStatusCode() === 404) {
+                $from->send('{"robotsExists": "false" }');
+            } else {
+                $from->send('{"robotsExists": "true" }');
+            }
+
+        }
     }
 
     public function onClose(ConnectionInterface $conn)
