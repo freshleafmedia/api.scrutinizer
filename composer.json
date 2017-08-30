@@ -1,0 +1,6 @@
+{
+    "name": "freshleafmedia/api.scrutinzer",
+    "type": "project",
+    "minimum-stability": "stable",
+    "require": {}
+}
