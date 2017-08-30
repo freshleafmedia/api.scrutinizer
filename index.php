@@ -50,7 +50,38 @@ class Api implements MessageComponentInterface
             } else {
                 $from->send('{"pass": "true" }');
             }
+        }
 
+        if ($data->request === '/tests/xmlSitemapExists') {
+            $client = new Client();
+
+            try {
+                $res = $client->request('GET', $data->body->URL . '/sitemap.xml');
+            } catch (\GuzzleHttp\Exception\ClientException $e) {
+                $res = $e->getResponse();
+            }
+
+            if ($res->getStatusCode() === 404) {
+                $from->send('{"pass": "false" }');
+            } else {
+                $from->send('{"pass": "true" }');
+            }
+        }
+
+        if ($data->request === '/tests/compressedXmlSitemapExists') {
+            $client = new Client();
+
+            try {
+                $res = $client->request('GET', $data->body->URL . '/sitemap.xml.gz');
+            } catch (\GuzzleHttp\Exception\ClientException $e) {
+                $res = $e->getResponse();
+            }
+
+            if ($res->getStatusCode() === 404) {
+                $from->send('{"pass": "false" }');
+            } else {
+                $from->send('{"pass": "true" }');
+            }
         }
     }
 
