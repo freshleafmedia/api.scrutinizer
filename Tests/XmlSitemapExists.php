@@ -5,6 +5,11 @@ use GuzzleHttp\Exception\ClientException;
 
 class XmlSitemapExists
 {
+    public function getName(): string
+    {
+        return 'xmlSitemapExists';
+    }
+
     public function run($URL): bool
     {
         $client = new Client();

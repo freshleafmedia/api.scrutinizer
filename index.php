@@ -42,34 +42,30 @@ class Api implements MessageComponentInterface
         }
 
         if ($data->request === '/tests/robotsTextExists') {
-            $test = new RobotsTxtExistsTest();
-
-            if ($test->run($data->body->URL)) {
-                $from->send('{"pass": "true" }');
-            } else {
-                $from->send('{"pass": "false" }');
-            }
+            $result = $this->runTest(RobotsTxtExistsTest::class, $data->body->URL);
+            $from->send(json_encode($result));
         }
 
         if ($data->request === '/tests/xmlSitemapExists') {
-            $test = new XmlSitemapExists();
-
-            if ($test->run($data->body->URL)) {
-                $from->send('{"pass": "true" }');
-            } else {
-                $from->send('{"pass": "false" }');
-            }
+            $result = $this->runTest(XmlSitemapExists::class, $data->body->URL);
+            $from->send(json_encode($result));
         }
 
         if ($data->request === '/tests/compressedXmlSitemapExists') {
-            $test = new CompressedXmlSitemapExists();
-
-            if ($test->run($data->body->URL)) {
-                $from->send('{"pass": "true" }');
-            } else {
-                $from->send('{"pass": "false" }');
-            }
+            $result = $this->runTest(CompressedXmlSitemapExists::class, $data->body->URL);
+            $from->send(json_encode($result));
         }
+    }
+
+    protected function runTest($test, $url): \stdClass
+    {
+        $test = new $test;
+
+        $result = new \stdClass();
+        $result->pass = $test->run($url);
+        $result->testName = $test->getName();
+
+        return $result;
     }
 
     public function onClose(ConnectionInterface $conn)
