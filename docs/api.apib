@@ -1,0 +1,63 @@
+FORMAT: 1A
+
+# Scrutinizer
+
+Scrutinizer is an API aimed at testing a number of key aspects of a website
+
+# Group Tests
+
+Resources related to tests that can be run by the API.
+
+## XML Sitemap Test [/tests/xmlSitemapExists]
+
+### Run The Test [POST]
+
++ Request (application/json)
+
+    + Body
+
+            {
+              "url": "https://example.org"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "pass": true
+        }
+
+## Compressed XML Sitemap Test [/tests/compressedXmlSitemapExists]
+
+### Run The Test [POST]
+
++ Request (application/json)
+
+    + Body
+
+            {
+              "url": "https://example.org"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "pass": true
+        }
+
+## Robots Text Test [/tests/robotsTextExists]
+
+### Run The Test [POST]
+
++ Request (application/json)
+
+    + Body
+
+            {
+              "url": "https://example.org"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "pass": true
+        }
