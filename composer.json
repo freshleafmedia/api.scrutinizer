@@ -2,5 +2,7 @@
     "name": "freshleafmedia/api.scrutinzer",
     "type": "project",
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "cboden/ratchet": "^0.3.6"
+    }
 }
