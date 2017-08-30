@@ -1,11 +1,11 @@
-<?php namespace ScrutinizerApi;
+<?php namespace FreshleafMedia\ScrutinizerApi;
 
+use FreshleafMedia\ScrutinizerApi\Tests\RobotsTxtExistsTest;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Ratchet\App;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use ScrutinizerApi\Tests\RobotsTxtExistsTest;
 
 // Make sure composer dependencies have been installed
 require __DIR__ . '/vendor/autoload.php';
