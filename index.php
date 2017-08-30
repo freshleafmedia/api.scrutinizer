@@ -21,11 +21,8 @@ class Api implements MessageComponentInterface
     {
         $data = json_decode($msg);
 
-        $from->send($data->request);
-
         if ($data->request === 'meta') {
             $client = new Client();
-            $from->send($data->body->URL);
 
             try {
                 $res = $client->request('GET', $data->body->URL);
