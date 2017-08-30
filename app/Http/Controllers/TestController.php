@@ -14,10 +14,8 @@ class TestController extends Controller
         //
     }
 
-    public function testXmlSitemapExists(Request $request)
+    public function testXmlSitemapExists(Request $request, Client $client)
     {
-        $client = new Client();
-
         try {
             $res = $client->request('GET', $request->get('url') . '/sitemap.xml');
         } catch (ClientException $e) {
@@ -31,10 +29,8 @@ class TestController extends Controller
         return $response;
     }
 
-    public function testCompressedXmlSitemapExists(Request $request)
+    public function testCompressedXmlSitemapExists(Request $request, Client $client)
     {
-        $client = new Client();
-
         try {
             $res = $client->request('GET', $request->get('url') . '/sitemap.xml.gz');
         } catch (ClientException $e) {
@@ -48,10 +44,8 @@ class TestController extends Controller
         return $response;
     }
 
-    public function testRobotsTextExists(Request $request)
+    public function testRobotsTextExists(Request $request, Client $client)
     {
-        $client = new Client();
-
         try {
             $res = $client->request('GET', $request->get('url') . '/robots.txt');
         } catch (ClientException $e) {
