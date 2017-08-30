@@ -1,6 +1,8 @@
 <?php namespace FreshleafMedia\ScrutinizerApi;
 
+use FreshleafMedia\ScrutinizerApi\Tests\CompressedXmlSitemapExists;
 use FreshleafMedia\ScrutinizerApi\Tests\RobotsTxtExistsTest;
+use FreshleafMedia\ScrutinizerApi\Tests\XmlSitemapExists;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Ratchet\App;
@@ -50,34 +52,22 @@ class Api implements MessageComponentInterface
         }
 
         if ($data->request === '/tests/xmlSitemapExists') {
-            $client = new Client();
+            $test = new XmlSitemapExists();
 
-            try {
-                $res = $client->request('GET', $data->body->URL . '/sitemap.xml');
-            } catch (ClientException $e) {
-                $res = $e->getResponse();
-            }
-
-            if ($res->getStatusCode() === 404) {
-                $from->send('{"pass": "false" }');
-            } else {
+            if ($test->run($data->body->URL)) {
                 $from->send('{"pass": "true" }');
+            } else {
+                $from->send('{"pass": "false" }');
             }
         }
 
         if ($data->request === '/tests/compressedXmlSitemapExists') {
-            $client = new Client();
+            $test = new CompressedXmlSitemapExists();
 
-            try {
-                $res = $client->request('GET', $data->body->URL . '/sitemap.xml.gz');
-            } catch (ClientException $e) {
-                $res = $e->getResponse();
-            }
-
-            if ($res->getStatusCode() === 404) {
-                $from->send('{"pass": "false" }');
-            } else {
+            if ($test->run($data->body->URL)) {
                 $from->send('{"pass": "true" }');
+            } else {
+                $from->send('{"pass": "false" }');
             }
         }
     }
