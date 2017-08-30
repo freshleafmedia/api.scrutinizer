@@ -30,3 +30,10 @@ A response will look like the following:
     "pass": true
 }
 ```
+
+### Endpoints
+
+- `/tests/all`
+- `/tests/robotsTextExists`
+- `/tests/xmlSitemapExists`
+- `/tests/compressedXmlSitemapExists`
