@@ -41,6 +41,20 @@ class Api implements MessageComponentInterface
             $from->send(json_encode($metaData));
         }
 
+        if ($data->request === '/tests/all') {
+            $tests = [
+                RobotsTxtExistsTest::class,
+                XmlSitemapExists::class,
+                CompressedXmlSitemapExists::class,
+            ];
+
+            foreach ($tests as $test) {
+                $result = $this->runTest($test, $data->body->URL);
+                $from->send(json_encode($result));
+            }
+
+        }
+
         if ($data->request === '/tests/robotsTextExists') {
             $result = $this->runTest(RobotsTxtExistsTest::class, $data->body->URL);
             $from->send(json_encode($result));
