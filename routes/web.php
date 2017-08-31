@@ -11,5 +11,5 @@
 |
 */
 
-$app->post('/tests/testSitemap', [ 'uses' => 'TestController@testXmlSitemapExists']);
+$app->post('/tests/sitemap', [ 'uses' => 'TestController@testSitemap']);
 $app->post('/tests/robotsText', [ 'uses' => 'TestController@testRobotsText']);
