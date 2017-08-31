@@ -8,9 +8,9 @@ Scrutinizer is an API aimed at testing a number of key aspects of a website
 
 Resources related to tests that can be run by the API.
 
-## XML Sitemap Test [/tests/xmlSitemapExists]
+## Sitemap Test [/tests/sitemap]
 
-### Run The Test [POST]
+### Run Sitemap Test [POST]
 
 + Request (application/json)
 
@@ -23,30 +23,13 @@ Resources related to tests that can be run by the API.
 + Response 200 (application/json)
 
         {
-            "pass": true
+            "exists": true,
+            "compressed": false
         }
 
-## Compressed XML Sitemap Test [/tests/compressedXmlSitemapExists]
+## Robots Text Test [/tests/robotsText]
 
-### Run The Test [POST]
-
-+ Request (application/json)
-
-    + Body
-
-            {
-              "url": "https://example.org"
-            }
-
-+ Response 200 (application/json)
-
-        {
-            "pass": true
-        }
-
-## Robots Text Test [/tests/robotsTextExists]
-
-### Run The Test [POST]
+### Run Robots Text Test [POST]
 
 + Request (application/json)
 
@@ -59,5 +42,6 @@ Resources related to tests that can be run by the API.
 + Response 200 (application/json)
 
         {
-            "pass": true
+            "exists": false,
+            "empty": null
         }
