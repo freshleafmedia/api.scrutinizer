@@ -1,6 +1,9 @@
 <?php
 
+use App\Services\Sitemap;
 use Codeception\Util\Stub;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 
 class SitemapTest extends \Codeception\Test\Unit
 {
@@ -24,10 +27,10 @@ class SitemapTest extends \Codeception\Test\Unit
             'getResponse' => 'sitemap content'
         ];
 
-        $response = Stub::make(\GuzzleHttp\Psr7\Response::class, $responseData);
-        $request = Stub::make(GuzzleHttp\Client::class, ['request' => $response ]);
+        $response = Stub::make(Response::class, $responseData);
+        $request = Stub::make(Client::class, ['request' => $response ]);
 
-        $test = new \App\Services\Sitemap($request);
+        $test = new Sitemap($request);
 
         $results = $test->run('http://example.org');
 
