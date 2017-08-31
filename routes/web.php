@@ -14,3 +14,4 @@
 $app->post('/tests/xmlSitemapExists', [ 'uses' => 'TestController@testXmlSitemapExists']);
 $app->post('/tests/compressedXmlSitemapExists', [ 'uses' => 'TestController@testCompressedXmlSitemapExists']);
 $app->post('/tests/robotsTextExists', [ 'uses' => 'TestController@testRobotsTextExists']);
+$app->post('/tests/tlsOk', [ 'uses' => 'TestController@testTlsOk']);
