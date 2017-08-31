@@ -27,10 +27,10 @@ class SitemapTest extends \Codeception\Test\Unit
             'getResponse' => 'sitemap content'
         ];
 
-        $response = Stub::make(Response::class, $responseData);
-        $request = Stub::make(Client::class, ['request' => $response ]);
+        $request = Stub::make(Response::class, $responseData);
+        $client = Stub::make(Client::class, ['request' => $request ]);
 
-        $test = new Sitemap($request);
+        $test = new Sitemap($client);
 
         $results = $test->run('http://example.org');
 
@@ -44,10 +44,10 @@ class SitemapTest extends \Codeception\Test\Unit
             'getResponse' => ''
         ];
 
-        $response = Stub::make(Response::class, $responseData);
-        $request = Stub::make(Client::class, ['request' => $response ]);
+        $request = Stub::make(Response::class, $responseData);
+        $client = Stub::make(Client::class, ['request' => $request ]);
 
-        $test = new Sitemap($request);
+        $test = new Sitemap($client);
 
         $results = $test->run('http://example.org');
 
