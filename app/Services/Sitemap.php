@@ -24,13 +24,16 @@ class Sitemap
 
         $results->exists = ($res->getStatusCode() === 200);
 
-        try {
-            $res = $this->client->request('GET', $URL . '/sitemap.xml.gz');
-        } catch (ClientException $e) {
-            $res = $e->getResponse();
+        if ($results->exists === false) {
+            $results->compressed = null;
+        } else {
+            try {
+                $res = $this->client->request('GET', $URL . '/sitemap.xml.gz');
+            } catch (ClientException $e) {
+                $res = $e->getResponse();
+            }
+            $results->compressed = ($res->getStatusCode() === 200);
         }
-
-        $results->compressed = ($res->getStatusCode() === 200);
 
         return $results;
     }
