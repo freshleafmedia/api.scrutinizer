@@ -22,13 +22,13 @@ class SitemapTest extends \Codeception\Test\Unit
 
     public function testSitemapIsFoundIfStatusCodeIsHttpOk()
     {
-        $responseData = [
+        $responseMethods = [
             'getStatusCode' => 200,
             'getResponse' => 'sitemap content'
         ];
 
-        $request = Stub::make(Response::class, $responseData);
-        $client = Stub::make(Client::class, ['request' => $request ]);
+        $responseClass = Stub::make(Response::class, $responseMethods);
+        $client = Stub::make(Client::class, ['request' => $responseClass ]);
 
         $test = new Sitemap($client);
 
@@ -39,13 +39,13 @@ class SitemapTest extends \Codeception\Test\Unit
 
     public function testSitemapIsNotFoundIfStatusCodeIsHttpNotFound()
     {
-        $responseData = [
+        $responseMethods = [
             'getStatusCode' => 404,
             'getResponse' => ''
         ];
 
-        $request = Stub::make(Response::class, $responseData);
-        $client = Stub::make(Client::class, ['request' => $request ]);
+        $responseClass = Stub::make(Response::class, $responseMethods);
+        $client = Stub::make(Client::class, ['request' => $responseClass ]);
 
         $test = new Sitemap($client);
 
