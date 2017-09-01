@@ -43,3 +43,30 @@ A group of tests related to SEO
             "notices": [],
             "data": []
         }
+
+
+# Group Performance Tests
+
+A group of tests related to performance
+
+## Response Time [/tests/performance/responseTime?url={url}]
+
+### Response Time Test [GET]
+
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
+
++ Response 200 (application/json)
+
+        {
+            "problems": [
+                "Site is slow to respond"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": [
+                {
+                    "responseTime":1.28789
+                }
+            ]
+        }
