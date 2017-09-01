@@ -23,7 +23,7 @@ class TestController extends Controller
 
         $response = new Response();
         $response->setStatusCode(Response::HTTP_OK);
-        $response->setContent([ 'test' => 'sitemap', 'results' => $results ]);
+        $response->setContent($results->getAllMessages());
 
         return $response;
     }
@@ -36,7 +36,7 @@ class TestController extends Controller
 
         $response = new Response();
         $response->setStatusCode(Response::HTTP_OK);
-        $response->setContent([ 'test' => 'robotsText', 'results' => $results ]);
+        $response->setContent($results->getAllMessages());
 
         return $response;
     }
