@@ -70,3 +70,30 @@ A group of tests related to performance
                 }
             ]
         }
+
+
+# Group Security Tests
+
+A group of tests related to security
+
+## SSL Labs [/tests/security/sslLabs?url={url}]
+
+### SSL Labs Test [GET]
+
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
+
++ Response 200 (application/json)
+
+        {
+            "problems": [
+                "Site has poor SSL configuration"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": [
+                {
+                    "grade": "D"
+                }
+            ]
+        }
