@@ -14,7 +14,7 @@ class RobotsText implements TestInterface
         $this->client = $client;
     }
 
-    public function run(\string $URL): TestResult
+    public function run(string $URL): TestResult
     {
         try {
             $res = $this->client->request('GET', $URL . '/robots.txt');
