@@ -20,3 +20,6 @@ $app->get('/tests/performance/responseTime', [ 'uses' => 'PerformanceController@
 
 $app->get('/tests/security/listAll', [ 'uses' => 'SecurityController@listAll']);
 $app->get('/tests/security/sslLabs', [ 'uses' => 'SecurityController@testSslLabs']);
+
+$app->get('/tests/appearance/listAll', [ 'uses' => 'AppearanceController@listAll']);
+$app->get('/tests/appearance/favicon', [ 'uses' => 'AppearanceController@testFavicon']);
