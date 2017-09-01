@@ -11,9 +11,9 @@
 |
 */
 
-$app->post('/tests/seo/sitemap', [ 'uses' => 'SeoController@testSitemap']);
-$app->post('/tests/seo/robotsText', [ 'uses' => 'SeoController@testRobotsText']);
+$app->get('/tests/seo/sitemap', [ 'uses' => 'SeoController@testSitemap']);
+$app->get('/tests/seo/robotsText', [ 'uses' => 'SeoController@testRobotsText']);
 
-$app->post('/tests/performance/responseTime', [ 'uses' => 'PerformanceController@testResponseTime']);
+$app->get('/tests/performance/responseTime', [ 'uses' => 'PerformanceController@testResponseTime']);
 
-$app->post('/tests/security/sslLabs', [ 'uses' => 'SecurityController@testSslLabs']);
+$app->get('/tests/security/sslLabs', [ 'uses' => 'SecurityController@testSslLabs']);
