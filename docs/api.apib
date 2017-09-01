@@ -128,3 +128,40 @@ A group of tests related to security
                 }
             ]
         }
+
+
+# Group Appearance Tests
+
+A group of tests related to appearance
+
+## List Tests [/tests/appearance/listAll]
+
+### List All [GET]
+
++ Response 200 (application/json)
+
+        [
+            'Favicon'
+        ]
+
+## Favicon [/tests/appearance/favicon?url={url}]
+
+### Favicon Test [GET]
+
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
+
++ Response 200 (application/json)
+
+        {
+            "problems": [
+                "Favicon link returns 404"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": [
+                {
+                    "url": "https://example.org/favicon.ico"
+                }
+            ]
+        }
