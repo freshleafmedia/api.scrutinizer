@@ -27,6 +27,8 @@ class ResponseTime implements TestInterface
                 } elseif ($stats->getTransferTime() > 0.5) {
                     $results->addWarning('Server slow to respond ('.$stats->getTransferTime().')');
                 }
+
+                $results->addData('responseTime', $stats->getTransferTime());
             }
         ]);
 
