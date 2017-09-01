@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\RobotsText;
-use App\Services\Sitemap;
+use App\Services\SEO\RobotsText;
+use App\Services\SEO\Sitemap;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
