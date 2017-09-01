@@ -12,7 +12,7 @@ class RobotsText
         $this->client = $client;
     }
 
-    public function run(string $URL): \stdClass
+    public function run(string $URL): TestResult
     {
         try {
             $res = $this->client->request('GET', $URL . '/robots.txt');
@@ -20,13 +20,14 @@ class RobotsText
             $res = $e->getResponse();
         }
 
-        $results = new \stdClass();
-        $results->exists = ($res->getStatusCode() === 200);
+        $results = new TestResult();
 
-        if ($results->exists === false) {
-            $results->empty = null;
-        } else {
-            $results->empty = ($res->getBody() === '');
+        if ($res->getStatusCode() === 404) {
+            $results->addProblem('Robots.txt was not found');
+        }
+
+        if ($res->getStatusCode() === 200 && $res->getBody() === '') {
+            $results->addWarning('Robots.txt appears to be empty');
         }
 
         return $results;
