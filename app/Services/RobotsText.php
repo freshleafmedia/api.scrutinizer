@@ -1,9 +1,10 @@
 <?php namespace App\Services;
 
+use App\Contracts\TestInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
-class RobotsText
+class RobotsText implements TestInterface
 {
     protected $client;
 
@@ -12,7 +13,7 @@ class RobotsText
         $this->client = $client;
     }
 
-    public function run(string $URL): TestResult
+    public function run(\string $URL): TestResult
     {
         try {
             $res = $this->client->request('GET', $URL . '/robots.txt');
