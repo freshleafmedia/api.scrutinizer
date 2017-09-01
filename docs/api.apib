@@ -8,6 +8,17 @@ Scrutinizer is an API aimed at testing a number of key aspects of a website
 
 A group of tests related to SEO
 
+## List Tests [/tests/seo/listAll]
+
+### List All [GET]
+
++ Response 200 (application/json)
+
+        [
+            'Sitemap',
+            'Robots Text'
+        ]
+
 ## Sitemap [/tests/seo/sitemap?url={url}]
 
 ### Sitemap Test [GET]
@@ -49,6 +60,16 @@ A group of tests related to SEO
 
 A group of tests related to performance
 
+## List Tests [/tests/performance/listAll]
+
+### List All [GET]
+
++ Response 200 (application/json)
+
+        [
+            'Response Time'
+        ]
+
 ## Response Time [/tests/performance/responseTime?url={url}]
 
 ### Response Time Test [GET]
@@ -75,6 +96,16 @@ A group of tests related to performance
 # Group Security Tests
 
 A group of tests related to security
+
+## List Tests [/tests/security/listAll]
+
+### List All [GET]
+
++ Response 200 (application/json)
+
+        [
+            'SSL Labs'
+        ]
 
 ## SSL Labs [/tests/security/sslLabs?url={url}]
 
