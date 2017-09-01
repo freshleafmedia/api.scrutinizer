@@ -11,5 +11,5 @@
 |
 */
 
-$app->post('/tests/sitemap', [ 'uses' => 'TestController@testSitemap']);
-$app->post('/tests/robotsText', [ 'uses' => 'TestController@testRobotsText']);
+$app->post('/tests/seo/sitemap', [ 'uses' => 'SeoController@testSitemap']);
+$app->post('/tests/seo/robotsText', [ 'uses' => 'SeoController@testRobotsText']);

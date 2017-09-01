@@ -1,6 +1,7 @@
-<?php namespace App\Services;
+<?php namespace App\Services\SEO;
 
 use App\Contracts\TestInterface;
+use App\Services\TestResult;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
