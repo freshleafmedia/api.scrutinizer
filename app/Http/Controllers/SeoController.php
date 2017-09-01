@@ -10,9 +10,18 @@ use Illuminate\Http\Response;
 
 class SeoController extends Controller
 {
-    public function __construct()
+    public function listAll()
     {
-        //
+        $tests = [
+            'Sitemap',
+            'Robots Text',
+        ];
+
+        $response = new Response();
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->setContent($tests);
+
+        return $response;
     }
 
     public function testSitemap(Request $request, Client $client)

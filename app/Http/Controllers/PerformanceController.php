@@ -7,6 +7,19 @@ use Illuminate\Http\Response;
 
 class PerformanceController extends Controller
 {
+    public function listAll()
+    {
+        $tests = [
+            'Request Time',
+        ];
+
+        $response = new Response();
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->setContent($tests);
+
+        return $response;
+    }
+
     public function testResponseTime(Request $request, Client $client)
     {
         $test = new ResponseTime($client);
