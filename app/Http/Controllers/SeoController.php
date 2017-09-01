@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class TestController extends Controller
+class SeoController extends Controller
 {
     public function __construct()
     {
