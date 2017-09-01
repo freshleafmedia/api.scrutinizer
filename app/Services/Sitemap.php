@@ -12,27 +12,28 @@ class Sitemap
         $this->client = $client;
     }
 
-    public function run(string $URL): \stdClass
+    public function run(string $URL): TestResult
     {
-        $results = new \stdClass();
-
         try {
             $res = $this->client->request('GET', $URL . '/sitemap.xml');
         } catch (ClientException $e) {
             $res = $e->getResponse();
         }
 
-        $results->exists = ($res->getStatusCode() === 200);
+        $results = new TestResult();
 
-        if ($results->exists === false) {
-            $results->compressed = null;
-        } else {
+        if ($res->getStatusCode() === 404) {
+            $results->addProblem('A sitemap.xml file could not be found');
+        }
+
+        if ($res->getStatusCode() === 200) {
             try {
                 $res = $this->client->request('GET', $URL . '/sitemap.xml.gz');
             } catch (ClientException $e) {
                 $res = $e->getResponse();
             }
-            $results->compressed = ($res->getStatusCode() === 200);
+
+            $results->addWarning('A compressed sitemap (sitemap.xml.gz) could not be found');
         }
 
         return $results;
