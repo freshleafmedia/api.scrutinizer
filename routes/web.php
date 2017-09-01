@@ -13,3 +13,5 @@
 
 $app->post('/tests/seo/sitemap', [ 'uses' => 'SeoController@testSitemap']);
 $app->post('/tests/seo/robotsText', [ 'uses' => 'SeoController@testRobotsText']);
+
+$app->post('/tests/performance/responseTime', [ 'uses' => 'PerformanceController@testResponseTime']);
