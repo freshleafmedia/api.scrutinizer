@@ -1,0 +1,12 @@
+api.scrutinizer:
+  container_name: api.scrutinizer
+  build: ./docker/api.scrutinizer
+  volumes:
+   - ./:/web
+  links:
+   - php
+php:
+  container_name: api.scrutinizer-php
+  image: php:7.1-fpm
+  volumes:
+   - ./:/web

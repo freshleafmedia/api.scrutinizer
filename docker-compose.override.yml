@@ -1,0 +1,3 @@
+api.scrutinizer:
+  ports:
+   - "8080:80"

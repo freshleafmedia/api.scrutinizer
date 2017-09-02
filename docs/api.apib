@@ -4,44 +4,164 @@ FORMAT: 1A
 
 Scrutinizer is an API aimed at testing a number of key aspects of a website
 
-# Group Tests
+# Group SEO Tests
 
-Resources related to tests that can be run by the API.
+A group of tests related to SEO
 
-## Sitemap Test [/tests/sitemap]
+## List Tests [/tests/seo/listAll]
 
-### Run Sitemap Test [POST]
+### List All [GET]
 
-+ Request (application/json)
++ Response 200 (application/json)
 
-    + Body
+        [
+            'Sitemap',
+            'Robots Text'
+        ]
 
-            {
-              "url": "https://example.org"
-            }
+## Sitemap [/tests/seo/sitemap?url={url}]
+
+### Sitemap Test [GET]
+
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
 
 + Response 200 (application/json)
 
         {
-            "exists": true,
-            "compressed": false
+            "problems": [
+                "Sitemap could not be found"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": []
         }
 
-## Robots Text Test [/tests/robotsText]
+## Robots Text [/tests/seo/robotsText?url={url}]
 
-### Run Robots Text Test [POST]
+### Robots Text Test [GET]
 
-+ Request (application/json)
-
-    + Body
-
-            {
-              "url": "https://example.org"
-            }
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
 
 + Response 200 (application/json)
 
         {
-            "exists": false,
-            "empty": null
+            "problems": [
+                "Robots text file could not be found"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": []
+        }
+
+
+# Group Performance Tests
+
+A group of tests related to performance
+
+## List Tests [/tests/performance/listAll]
+
+### List All [GET]
+
++ Response 200 (application/json)
+
+        [
+            'Response Time'
+        ]
+
+## Response Time [/tests/performance/responseTime?url={url}]
+
+### Response Time Test [GET]
+
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
+
++ Response 200 (application/json)
+
+        {
+            "problems": [
+                "Site is slow to respond"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": [
+                {
+                    "responseTime":1.28789
+                }
+            ]
+        }
+
+
+# Group Security Tests
+
+A group of tests related to security
+
+## List Tests [/tests/security/listAll]
+
+### List All [GET]
+
++ Response 200 (application/json)
+
+        [
+            'SSL Labs'
+        ]
+
+## SSL Labs [/tests/security/sslLabs?url={url}]
+
+### SSL Labs Test [GET]
+
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
+
++ Response 200 (application/json)
+
+        {
+            "problems": [
+                "Site has poor SSL configuration"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": [
+                {
+                    "grade": "D"
+                }
+            ]
+        }
+
+
+# Group Appearance Tests
+
+A group of tests related to appearance
+
+## List Tests [/tests/appearance/listAll]
+
+### List All [GET]
+
++ Response 200 (application/json)
+
+        [
+            'Favicon'
+        ]
+
+## Favicon [/tests/appearance/favicon?url={url}]
+
+### Favicon Test [GET]
+
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
+
++ Response 200 (application/json)
+
+        {
+            "problems": [
+                "Favicon link returns 404"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": [
+                {
+                    "url": "https://example.org/favicon.ico"
+                }
+            ]
         }
