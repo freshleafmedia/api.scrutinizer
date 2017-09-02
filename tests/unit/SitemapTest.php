@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\Sitemap;
+use App\Services\SEO\Sitemap;
 use Codeception\Util\Stub;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
@@ -34,7 +34,7 @@ class SitemapTest extends \Codeception\Test\Unit
 
         $results = $test->run('http://example.org');
 
-        $this->assertTrue($results->exists);
+        $this->assertTrue(count($results->getProblems()) === 0);
     }
 
     public function testExistsIsFalseIfSitemapIsNotFound()
@@ -51,25 +51,7 @@ class SitemapTest extends \Codeception\Test\Unit
 
         $results = $test->run('http://example.org');
 
-        $this->assertFalse($results->exists);
-    }
-
-    public function testCompressedIsNullIfSitemapIsNotFound()
-    {
-        $responseMethods = [
-            'getStatusCode' => 404,
-            'getResponse' => ''
-        ];
-
-        $responseClass = Stub::make(Response::class, $responseMethods);
-        $client = Stub::make(Client::class, ['request' => $responseClass ]);
-
-        $test = new Sitemap($client);
-
-        $results = $test->run('http://example.org');
-
-        $this->assertFalse($results->exists);
-        $this->assertAttributeEquals(null, 'compressed', $results);
+        $this->assertTrue(count($results->getProblems()) === 1);
     }
 
     public function testCompressedIsTrueIfCompressedSitemapIsFound()
@@ -97,7 +79,7 @@ class SitemapTest extends \Codeception\Test\Unit
         $test = new Sitemap($client);
         $results = $test->run('http://example.org');
 
-        $this->assertTrue($results->compressed);
+        $this->assertTrue(count($results->getProblems()) === 0);
     }
 
     public function testCompressedIsFalseIfCompressedSitemapIsNotFound()
@@ -125,6 +107,6 @@ class SitemapTest extends \Codeception\Test\Unit
         $test = new Sitemap($client);
         $results = $test->run('http://example.org');
 
-        $this->assertFalse($results->compressed);
+        $this->assertTrue(count($results->getWarnings()) === 1);
     }
 }
