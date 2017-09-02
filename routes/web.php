@@ -11,5 +11,15 @@
 |
 */
 
-$app->post('/tests/sitemap', [ 'uses' => 'TestController@testSitemap']);
-$app->post('/tests/robotsText', [ 'uses' => 'TestController@testRobotsText']);
+$app->get('/tests/seo/listAll', [ 'uses' => 'SeoController@listAll']);
+$app->get('/tests/seo/sitemap', [ 'uses' => 'SeoController@testSitemap']);
+$app->get('/tests/seo/robotsText', [ 'uses' => 'SeoController@testRobotsText']);
+
+$app->get('/tests/performance/listAll', [ 'uses' => 'PerformanceController@listAll']);
+$app->get('/tests/performance/responseTime', [ 'uses' => 'PerformanceController@testResponseTime']);
+
+$app->get('/tests/security/listAll', [ 'uses' => 'SecurityController@listAll']);
+$app->get('/tests/security/sslLabs', [ 'uses' => 'SecurityController@testSslLabs']);
+
+$app->get('/tests/appearance/listAll', [ 'uses' => 'AppearanceController@listAll']);
+$app->get('/tests/appearance/favicon', [ 'uses' => 'AppearanceController@testFavicon']);
