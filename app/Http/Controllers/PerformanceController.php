@@ -10,7 +10,7 @@ class PerformanceController extends Controller
     public function listAll()
     {
         $tests = [
-            'Request Time',
+            'Response Time',
         ];
 
         $response = new Response();
