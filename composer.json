@@ -1,8 +1,6 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
-    "license": "MIT",
+    "name": "freshleafmedia/api.scrutinzer",
+    "description": "The API for power Scrutinizer",
     "type": "project",
     "require": {
         "php": "^7.0.0",
@@ -25,11 +23,6 @@
         "classmap": [
             "tests/",
             "database/"
-        ]
-    },
-    "scripts": {
-        "post-root-package-install": [
-            "php -r \"copy('.env.example', '.env');\""
         ]
     },
     "minimum-stability": "dev",
