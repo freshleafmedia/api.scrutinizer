@@ -23,3 +23,4 @@ $app->get('/tests/security/sslLabs', [ 'uses' => 'SecurityController@testSslLabs
 
 $app->get('/tests/appearance/listAll', [ 'uses' => 'AppearanceController@listAll']);
 $app->get('/tests/appearance/favicon', [ 'uses' => 'AppearanceController@testFavicon']);
+$app->get('/tests/appearance/viewportMeta', [ 'uses' => 'AppearanceController@testViewportMeta']);
