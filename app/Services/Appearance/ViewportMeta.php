@@ -41,11 +41,11 @@ class ViewportMeta implements TestInterface
         }
 
         $viewportMetaTag = $viewportMetaTags[0];
+        $viewportMetaValues = explode(',', $viewportMetaTag->getAttribute('content'));
+        $viewportMetaValues = array_map('trim', $viewportMetaValues);
 
-        // TODO: need to test for initial-scale using the decimal 1.0
-        // TODO: Need to test for the content in any order
-        if ($viewportMetaTag->getAttribute('content') !== 'width=device-width, initial-scale=1') {
-            $results->addProblem('Viewport meta tags content is incorrect');
+        if (in_array('width=device-width', $viewportMetaValues) === false) {
+            $results->addProblem('Viewport meta tag is missing the width property');
             return $results;
         }
 
