@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\SEO\RobotsText;
 use App\Services\SEO\Sitemap;
+use App\Services\SEO\TitleTag;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,6 +16,7 @@ class SeoController extends Controller
         $tests = [
             'Sitemap',
             'Robots Text',
+            'Title Tag',
         ];
 
         $response = new Response();
@@ -43,6 +45,19 @@ class SeoController extends Controller
 
         $results = $test->run($request->get('url'));
 
+        $response = new Response();
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->setContent($results->getAllMessages());
+
+        return $response;
+    }
+
+    public function testTitleTag(Request $request, Client $client)
+    {
+        $test = new TitleTag($client);
+        
+        $results = $test->run($request->get('url'));
+        
         $response = new Response();
         $response->setStatusCode(Response::HTTP_OK);
         $response->setContent($results->getAllMessages());
