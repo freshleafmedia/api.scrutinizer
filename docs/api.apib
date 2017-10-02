@@ -55,6 +55,24 @@ A group of tests related to SEO
             "data": []
         }
 
+## Title Tag [/tests/seo/titleTag?url={url}]
+
+### Title Tag Test [GET]
+
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
+
++ Response 200 (application/json)
+
+        {
+            "problems": [
+                "Title tag could not be found"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": []
+        }
+
 
 # Group Performance Tests
 
