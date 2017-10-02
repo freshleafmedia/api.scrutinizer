@@ -46,6 +46,12 @@ class TitleTag implements TestInterface
             return $results;
         }
 
+        if (strlen($titleTagContent) > 60) {
+            $results->addWarning('Title tag is too long');
+            $results->addData('titleLength', strlen($titleTagContent));
+            return $results;
+        }
+
         return $results;
     }
 }
