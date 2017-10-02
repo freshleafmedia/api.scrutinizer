@@ -1,0 +1,13 @@
+{
+  "name": "api.scrutinizer",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/freshleafmedia/api.scrutinizer",
+  "license": "MIT",
+  "scripts": {
+    "docs:generate": "aglio -i docs/api.apib -o docs/output.html"
+  },
+  "dependencies": {
+    "aglio": "^2.3.0"
+  }
+}
