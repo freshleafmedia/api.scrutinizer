@@ -39,7 +39,7 @@ class TitleTag implements TestInterface
         }
 
         $titleTag = $titleTags[0];
-        $titleTagContent = $titleTag->textContent;
+        $titleTagContent = trim($titleTag->textContent);
 
         if (empty($titleTagContent)) {
             $results->addProblem('Title tag is empty');
