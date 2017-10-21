@@ -5,4 +5,4 @@ php:
 
 install: composer install
 
-script: composer exec -v -- codecept run
+script: composer exec -v -- codecept run unit
