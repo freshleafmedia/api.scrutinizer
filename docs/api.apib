@@ -183,3 +183,35 @@ A group of tests related to appearance
                 }
             ]
         }
+
+# Group Technical Tests
+
+A group of tests related to technical
+
+## List Tests [/tests/technical/listAll]
+
+### List All [GET]
+
++ Response 200 (application/json)
+
+        [
+            'Doctype Position'
+        ]
+
+## Doctype Position [/tests/technical/doctypePosition?url={url}]
+
+### Doctype Position Test [GET]
+
++ Parameters
+    + url: `https://example.org` (string, required) - URL of the site to test.
+
++ Response 200 (application/json)
+
+        {
+            "problems": [
+                "Doctype declaration should be the first thing in the body"
+            ],
+            "warnings": [],
+            "notices": [],
+            "data": []
+        }
