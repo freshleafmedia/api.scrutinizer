@@ -52,6 +52,22 @@ class DoctypePositionTest extends \Codeception\Test\Unit
         $this->assertFalse(count($results->getProblems()) === 0);
     }
 
+    public function testForFailureWhenDoctypeIsPrecededWithWhitespace()
+    {
+        $responseMethods = [
+            'getBody' => '    <!DOCTYPE html>',
+        ];
+
+        $responseClass = Stub::make(Response::class, $responseMethods);
+        $client = Stub::make(Client::class, ['request' => $responseClass ]);
+
+        $test = new DoctypePosition($client);
+
+        $results = $test->run('http://example.org');
+
+        $this->assertFalse(count($results->getProblems()) === 0);
+    }
+
     public function testTheDoctypeChecksAreCaseInsensitive()
     {
         $responseMethods = [
