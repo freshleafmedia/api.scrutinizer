@@ -35,4 +35,20 @@ class DoctypePositionTest extends \Codeception\Test\Unit
 
         $this->assertTrue(count($results->getProblems()) === 0);
     }
+
+    public function testTheDoctypeChecksAreCaseInsensitive()
+    {
+        $responseMethods = [
+            'getBody' => '<!doctype html>',
+        ];
+
+        $responseClass = Stub::make(Response::class, $responseMethods);
+        $client = Stub::make(Client::class, ['request' => $responseClass ]);
+
+        $test = new DoctypePosition($client);
+
+        $results = $test->run('http://example.org');
+
+        $this->assertTrue(count($results->getProblems()) === 0);
+    }
 }
